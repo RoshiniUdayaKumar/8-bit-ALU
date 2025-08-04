@@ -1,6 +1,7 @@
 //use this when running on EDA playground 
 
-vsim ALU_tb +access+r -dbg
-vcd file dump.vcd
-vcd add -r sim:/*
-run -all
+vsim +access+r;
+run -all;
+acdb save;
+acdb report -db fcover.acdb -txt -o cov.txt;
+exit
