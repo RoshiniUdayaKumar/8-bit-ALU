@@ -1,72 +1,45 @@
-<h2> Design and Verification of a 8-bit-ALU </h2>
 
-ALU, abbreviated as arithmetic and logical unit. It used to perform operations on operands. 
-It is an essential component of the CPU. 
+## 🔧 Design and Verification of an 8-bit ALU
 
-<h3>Signal list</h3>
-- 2 8-bit inputs (a,b)
+### 🧠 Overview
 
--3-bit pcode (to select the operation)
+The Arithmetic Logic Unit (ALU) is a fundamental building block of the CPU, responsible for executing arithmetic and logic operations. 
 
--8-bit result (to store the result of the operation)
+### 📶 Signal Description
 
--1-bit zero flag(useful for conditional brnaching in CPU)
+* **`a`, `b`**: 8-bit input operands
+* **`opcode`**: 3-bit control signal to select the operation
+* **`result`**: 8-bit output for the result
+* **`zero`**: 1-bit flag set when the result is zero (useful for conditional branching in CPU architecture)
 
-<h3>ALU Operations</h3>
-ADD- addition
 
-SUB- subtraction
+### 🔢 Supported ALU Operations
 
-OR- bitwise OR
+| Opcode | Operation | Description         |
+| ------ | --------- | ------------------- |
+| 000    | ADD       | Addition            |
+| 001    | SUB       | Subtraction         |
+| 010    | AND       | Bitwise AND         |
+| 011    | OR        | Bitwise OR          |
+| 100    | XOR       | Bitwise XOR         |
+| 101    | SLL       | Shift Left Logical  |
+| 110    | SRL       | Shift Right Logical |
+| 111    | SLT       | Set if Less Than    |
 
-AND- bitwise AND
+> **Why MUL and DIV are not included:**
+> Multiplication and division operations are computationally more intensive and usually require multiple clock cycles. These operations are often implemented separately in a **Multiply-Divide Unit (MDU)** and not part of a basic ALU design.
 
-XOR- bitwise XOR
+### 🧰 Tools Used
 
-SLL- shift left logical
+* **Design & Simulation:** Xilinx Vivado, EDA Playground (Simulator- Aldec Rivera Pro)
+* **Language:** Verilog and SystemVerilog
 
-SRL- shift right logical
+### 🧪 Verification Strategy
 
-SLT- set less than
+**Initial Approach: Linear Testbench**
 
-Why dint i include -->MUL and DIV
+* **Step 1:** Apply hard-coded values to inputs `a` and `b`, and verify functionality across all opcodes.
+* **Step 2:** Add functional coverage to ensure all ALU operations and see why this method isnt best one to approach verification. 
 
-Multiplication and division are more complex to integrate into a basic ALU. They are usually present on a separate unit called an MDU (multiplier-division unit). They take more than 1 clock cycle to execute. So our goal is just to design a basic 8-bit, 3-bit opcode ALU. 
 
-<h3>OPERATION ENCODING</h3> 
-3'b000-->ADD
 
-3'b001-->SUB
-
-3'b010-->AND
-
-3'b011-->OR
-
-3'b100-->XOR
-
-3'b101-->SLL
-
-3'b110-->SRL
-
-3'b111-->SLT
-
-PROCEDURE:
-Design file (Alu.v)-->DONE
-TB file (include all TB components)
-Coverage 
-Assertions 
-Simulation 
-Synthesis 
-Calculating set-up and hold time
-
-TOOLS USED: Xilinx Vivado
-
-VERILOG CODING
-Follow-up questions-
-1. what is the purpose of zero flag?
-Zero-flag is used to indicate a result 0. It is helpful in conditional branching. (WKT when result=0, it takes a branch in CPU architecture, this flag helps in that)
-
-VERIFICATION 
-First Approach- Linear testbench
-Step 1:Checking dedicated values for a and b with all opcode values. 
-Step 2:Adding coverage
