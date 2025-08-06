@@ -38,21 +38,21 @@ The Arithmetic Logic Unit (ALU) is a fundamental building block of the CPU, resp
 
 The verification approach is quite straightforward. 
 
-<h3>Linear Testbench </h3>
+<h3>1. Linear Testbench </h3>
 Initially, I used hardcoded values for inputs (a,b, and opcode) and ran functional coverage. 
 
 Limitations: This method does not cover corner cases, and covering all combinations of input values manually is time-consuming. Thus, leading to an inefficient testbench.
 
 Coverage achieved = 80%
 
-<h3>Constarint Random Testbench</h3>
+<h3>2. Constarint Random Testbench</h3>
 For this approach, I used SystemVerilog random keyword (rand/randc) and the .randomize() method to generate random values for inputs. 
 
 Advantages: Corner cases were covered, and boundary values were reached.  
 
 Coverage achieved 95%
 
-<h3>System Verilog Testbench Environment</h3>
+<h3>3. System Verilog Testbench Environment</h3>
 I developed all the TB components of SystemVerilog - Generator, Driver, Monitor, and scoreboard. This method proves to be the most robust verification approach. 
 
 Files included -
